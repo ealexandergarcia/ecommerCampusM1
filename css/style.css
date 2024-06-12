@@ -132,6 +132,12 @@
     filter: invert(1);
 }
 
+.nav__ul li a span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .main__article {
     /* background: red; */
     height: 70vh;
