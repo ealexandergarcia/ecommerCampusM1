@@ -1,4 +1,4 @@
-export const galleryIndex = (res) => {
+export const galleryIndex = (res, cat) => {
     let {products} = res.data;
     let plantilla = "";
     
@@ -12,7 +12,7 @@ export const galleryIndex = (res) => {
                 <img src="storage/img/heart.svg" alt="">
             </div>
             <h5>${element.product_title}</h5>
-            <small>Dress modern</small>
+            <small>${cat}</small>
             <div class="section__price">
                 <span>${element.product_price}</span>
                 <div class="price__score">
