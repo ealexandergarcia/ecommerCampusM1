@@ -33,3 +33,14 @@ export const getAllProductsByCategory = async ({ search: text, id:idCategory }) 
     return data;
 }
 
+export const getProductId = async ({ id: idCategory }) => {
+    const url =  `https://real-time-amazon-data.p.rapidapi.com/product-details?asin=${idCategory}&country=US` ;
+    const options = {
+        method: 'GET',
+        headers
+    };
+    let res = await fetch(url, options);
+    let data = await res.json();
+    return data;
+}
+
