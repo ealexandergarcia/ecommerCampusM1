@@ -1,5 +1,6 @@
 import { galleryCategory } from "./components/gallery.js";
-import { getProductId } from "./module/app.js";
+import { getProductId } from "./module/detail.js";
+
 
 let main__section_gallery = document.querySelector("#main__section_gallery");
 
