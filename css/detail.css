@@ -25,10 +25,23 @@
     /* background: blue; */
     width: var(--layout-imagen-width-details);
     height: var(--layout-imagen-height-details);
-    overflow: hidden;
-}
-.product_image img{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-x: scroll;
     border-radius: 15px;
+}
+
+.product_image__item {
+    flex: 1;
+    min-width: 98%;
+    /* background-color: purple; */
+    margin: 0 10px;
+    /* padding: 0 10px; */
+    height: var(--layout-imagen-height-details);
+  }
+
+.product_image__item img{
     width: var(--layout-imagen-width-details);
     height: var(--layout-imagen-height-details);
     object-fit: cover;

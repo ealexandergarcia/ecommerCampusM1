@@ -1,7 +1,7 @@
 export const galleryIndex = (res, cat) => {
-    let {products} = res.data;
+    let { products } = res.data;
     let plantilla = "";
-    
+
     products.forEach(element => {
         plantilla += /*html*/` 
         <section>
@@ -24,4 +24,19 @@ export const galleryIndex = (res, cat) => {
     });
 
     return plantilla
+}
+
+export const galleryCategory = ({data: {product_photos}} = res)=>{
+    return /*html*/`
+    <article class="article__product">
+        <div class="product_image">
+            ${product_photos.map(value => `<div class="product_image__item"><img src="${value}"></div>`)}
+        </div>
+        <div class="product_menu">
+            <a href="../index.html">
+                <img src="../storage/img/back.svg" alt="">
+            </a>
+            <img src="../storage/img/heartblack.svg" alt="">
+        </div>
+    </article>`;
 }
