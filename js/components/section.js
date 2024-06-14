@@ -9,9 +9,9 @@ export const titleProductDetail = async ({data:dataUpdate}= res)=>{
     //     product_variations,
     //     rating_distribution,
     //     review_aspects,
-    //     ...dataUpdate
+    //     ...pruebita
     // } = data;
-    // console.log(res);
+    console.log(dataUpdate);
     return /*html*/`
     <article class="article__detail">
         <div class="detail__head">

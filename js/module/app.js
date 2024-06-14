@@ -7,6 +7,7 @@ export const getAllProductsName = async ({ search: text } = { search: "Phone" })
     };
     let res = await fetch(url, options);
     let data = await res.json();
+    
     return data;
 }
 
