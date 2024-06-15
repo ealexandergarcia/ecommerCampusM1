@@ -28,15 +28,15 @@ export const galleryIndex = (res, cat) => {
 
 export const galleryCategory = ({data: {product_photos}} = res)=>{
     return /*html*/`
-    <article class="article__product">
-        <div class="product_image">
-            ${product_photos.map(value => `<div class="product_image__item"><img src="${value}"></div>`)}
-        </div>
-        <div class="product_menu">
-            <a href="../index.html">
-                <img src="../storage/img/back.svg" alt="">
-            </a>
-            <img src="../storage/img/heartblack.svg" alt="">
-        </div>
-    </article>`;
+        <article class="article__product">
+            <div class="product__image">
+                ${product_photos.map(value => `<div class="product__image__item"><img src="${value}"></div>`).join('')}
+            </div>
+            <div class="product__menu">
+                <a href="../">
+                    <img src="../storage/img/back.svg">
+                </a>
+                <img src="../storage/img/heartblack.svg">
+            </div>
+        </article>`;
 }

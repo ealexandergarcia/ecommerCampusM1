@@ -11,8 +11,8 @@ addEventListener("DOMContentLoaded", async(e)=>{
     let id = params.get('id');
     if(!localStorage.getItem(id)) localStorage.setItem(id, JSON.stringify(await getProductId({id})));
     let info = JSON.parse(localStorage.getItem(id));
-    main__section_gallery.innerHTML = await galleryCategory(info)
-    main__section_title.innerHTML = await titleProductDetail(info)
+    main__section__gallery.innerHTML = await galleryCategory(info)
+    main__section__title.innerHTML = await titleProductDetail(info)
     // let {data} = res;
     // let {
     //     category_path,
