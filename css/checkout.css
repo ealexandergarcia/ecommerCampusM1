@@ -26,6 +26,7 @@
 .main {
     /* background: red; */
     padding: var(--space-layout-padding-lr);
+    margin-bottom: 100px;
 }
 .checkout__details {
     /* background: green; */
@@ -65,6 +66,9 @@
     font-size: 1em;
     font-family: "EncodeSans-SemiBold";
     color: var(--color-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .product__description small{
     margin-top: 2px;
