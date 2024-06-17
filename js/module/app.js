@@ -34,20 +34,23 @@ export const getAllProductsByCategory = async ({ search: text, id:idCategory }) 
     return data;
 }
 
-
-export const getAllProductRandom = async ({
-    query="zapato",
-    page=1, 
+export const getAllProductRandom = async({
+    query="zapato", 
+    page=3000, 
     category_id="fashion",
-    min_price=100,
+    min_price=100, 
     max_price=150,
-    brand=["adidas", "nike","puma"]})=>{
-        page= Math.random()*(page/20);
-        page =parseInt(Math.round(page));
-        if(!page) page = 2;
-        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${query}&page=${page}&country=US&sort_by=RELEVANCE&category_id=${category_id}&min_price=${min_price}&max_price=${max_price}&product_condition=ALL&brand=${brand.join(",")}`;
-        const options = {
-            method: 'GET',
-            headers
-        };
+    brand=["adidas", "nike", "puma"]})=>{
+    console.log("Esperando .......");
+    page = Math.random()*(page/20);
+    page = parseInt(Math.round(page));
+    if(!page) page = 1;
+    const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${query}&page=${page}&country=US&sort_by=RELEVANCE&category_id=${category_id}&min_price=${min_price}&max_price=${max_price}&product_condition=NEW&brand=${brand.join("%2C")}`;
+    const options = {
+        method: 'GET',
+        headers
+    };
+    let res = await fetch(url, options);
+    let data = res.json();
+    return data;
 }
