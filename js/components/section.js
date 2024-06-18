@@ -27,59 +27,84 @@ export const buttonAtcProductDetial = async({ data:dataUpdate} = res) =>{
         </li>`;
 }
 
-export const cardProductCheckout = async (res) => {
-    let plantilla = "";
-    res.forEach((element) => {
-        if (element !== null && typeof element === 'string') {
-            const data = JSON.parse(element);
-            let info = data.data;
-            if (data.status === 'OK' && data.request_id && info) {
-                plantilla += /*html*/`
-                <article class="details__product">
-                    <div class="product__imagen">
-                        <img src="${info.product_photo}">
-                    </div>
-                    <div class="product__description">
-                        <h3>${info.product_title}</h3>
-                        <small>Dress modern</small>
-                        <span class="unit-price" data-price="${info.product_price}">$${info.product_price}</span>
-                    </div>
-                    <div class="product__custom">
-                        <img src="../storage/img/menu.svg">
-                        <div class="product__select">
-                            <a href="" onclick="return false;" class='counter-button decrement'>
-                                <img src="../storage/img/minusWhite.svg">
-                            </a>
-                            <span class='counter__value'>1</span>
-                            <a href="" onclick="return false;" class='counter-button increment'>
-                                <img src="../storage/img/plusWhite.svg">
-                            </a>
-                        </div>
-                        <div class="total-price">$${info.product_price}</div>
-                    </div>
-                </article>
-                `;
-            }
-        }
-    });
-    return plantilla;
-};
+// export const cardProductCheckout = async (res) => {
+//     let plantilla = "";
+//     res.forEach((element) => {
+//         if (element !== null && typeof element === 'string') {
+//             const data = JSON.parse(element);
+//             let info = data.data;
+//             if (data.status === 'OK' && data.request_id && info) {
+//                 plantilla += /*html*/`
+//                 <article class="details__product">
+//                     <div class="product__imagen">
+//                         <img src="${info.product_photo}">
+//                     </div>
+//                     <div class="product__description">
+//                         <h3>${info.product_title}</h3>
+//                         <small>Dress modern</small>
+//                         <span class="unit-price" data-price="${info.product_price}">$${info.product_price}</span>
+//                     </div>
+//                     <div class="product__custom">
+//                         <img src="../storage/img/menu.svg">
+//                         <div class="product__select">
+//                             <a href="" onclick="return false;" class='counter-button decrement'>
+//                                 <img src="../storage/img/minusWhite.svg">
+//                             </a>
+//                             <span class='counter__value'>1</span>
+//                             <a href="" onclick="return false;" class='counter-button increment'>
+//                                 <img src="../storage/img/plusWhite.svg">
+//                             </a>
+//                         </div>
+//                         <div class="total-price">$${info.product_price}</div>
+//                     </div>
+//                 </article>
+//                 `;
+//             }
+//         }
+//     });
+//     return plantilla;
+// };
 
-export const billProductCheckout = async (totalItems, totalPrice) => {
+// export const billProductCheckout = async (totalItems, totalPrice) => {
+//     return /*html*/`
+//         <article class="section__bill">
+//             <div class="bill__total">
+//                 <label>Total (${totalItems} items)</label>
+//                 <span>$${totalPrice.toFixed(2)}</span>
+//             </div>
+//             <div class="bill__fee">
+//                 <label>Shipping Fee</label>
+//                 <span>$0.00</span>
+//             </div>
+//             <div class="bill__subtotal">
+//                 <label>Sub Total</label>
+//                 <span>$${totalPrice.toFixed(2)}</span>
+//             </div>
+//         </article>
+//     `;
+// };
+
+export const productDetail = async(res)=>{
+    let {data} = res;
+    let {
+        category_path,
+        about_product,
+        product_details,
+        product_information,
+        product_photos,
+        product_variations,
+        rating_distribution,
+        review_aspects,
+        ...dataUpdate
+    } = data;
+    // console.log(dataUpdate);
+    let string1 = dataUpdate.product_description.slice(0, 165);
+    let string2 = dataUpdate.product_description.slice(166);
+
+
     return /*html*/`
-        <article class="section__bill">
-            <div class="bill__total">
-                <label>Total (${totalItems} items)</label>
-                <span>$${totalPrice.toFixed(2)}</span>
-            </div>
-            <div class="bill__fee">
-                <label>Shipping Fee</label>
-                <span>$0.00</span>
-            </div>
-            <div class="bill__subtotal">
-                <label>Sub Total</label>
-                <span>$${totalPrice.toFixed(2)}</span>
-            </div>
-        </article>
-    `;
-};
+    <details>
+        <summary>${(dataUpdate.product_description.length >= 165) ? string1+"..." : string1}</summary>
+        <p>${string2}</p>
+    </details>`;
+}
