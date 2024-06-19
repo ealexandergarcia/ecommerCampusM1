@@ -10,10 +10,14 @@ export const titleProductDetail = async({ data:dataUpdate } = res)=>{
                 </div>
             </div>
             <div class="detail__score">
-                ${new Array(parseInt(dataUpdate.product_star_rating)).fill(`<img src="../storage/img/star.svg">`).join('')}
-                <span>${dataUpdate.product_star_rating}</span>
-                <a href="${dataUpdate.product_url}">(${dataUpdate.product_num_ratings} reviews)</a>
-            </div>
+            ${
+              dataUpdate.product_star_rating !== null && dataUpdate.product_star_rating !== undefined
+                ? new Array(parseInt(dataUpdate.product_star_rating)).fill(`<img src="../storage/img/star.svg">`).join('')
+                : ''
+            }
+            <span>${dataUpdate.product_star_rating}</span>
+            <a href="${dataUpdate.product_url}">(${dataUpdate.product_num_ratings} reviews)</a>
+          </div>
         </article>`;
 }
 
@@ -98,13 +102,19 @@ export const productDetail = async(res)=>{
         ...dataUpdate
     } = data;
     // console.log(dataUpdate);
-    let string1 = dataUpdate.product_description.slice(0, 165);
-    let string2 = dataUpdate.product_description.slice(166);
-
+    let description = '';
+    let description2 = '';
+    if (dataUpdate.product_description) {
+        description = dataUpdate.product_description.slice(0, 165);
+        description2 = dataUpdate.product_description.slice(166);
+    }else{
+        description=("There is no description of this product")
+    }
 
     return /*html*/`
     <details>
-        <summary>${(dataUpdate.product_description.length >= 165) ? string1+"..." : string1}</summary>
-        <p>${string2}</p>
+        <summary>${(dataUpdate.product_description && dataUpdate.product_description.length >= 165) ? description + "...Read more" : description}
+        </summary>
+        <p>${description2}</p>
     </details>`;
 }
