@@ -55,6 +55,11 @@ footer__ul.addEventListener("click", async (e) =>{
     console.log(id)
     if(!sessionStorage.getItem(prueba.Producto)) {
         prueba.Producto.data.quantity = amount;
+        // e.preventDefault();
+        prueba.Producto.data.product_price = prueba.Producto.data.product_price.replace(/^\$/, '');
+        if(prueba.Producto.data.product_original_price){
+            prueba.Producto.data.product_original_price = prueba.Producto.data.product_original_price.replace(/^\$/, '');
+        }        
         sessionStorage.setItem(id,JSON.stringify(prueba.Producto));
     }
     let info = JSON.parse(sessionStorage.getItem(id));
