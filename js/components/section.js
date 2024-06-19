@@ -59,7 +59,7 @@ export const cardProductCheckout = async (res) => {
                                 <img src="../storage/img/plusWhite.svg">
                             </a>
                         </div>
-                        <div class="total-price">$${info.product_price}</div>
+                        <div class="total-price"></div>
                     </div>
                 </article>
                 `;

@@ -23,13 +23,12 @@ addEventListener("DOMContentLoaded", async (e) => {
     incrementButtons.forEach((incrementButton, index) => {
         let counterValue = counterValues[index];
         let totalPriceElement = totalPriceElements[index];
-        let unitPrice = parseFloat(unitPriceElements);
+        let unitPrice = parseFloat(unitPriceElements[index].getAttribute('data-price'));
 
         incrementButton.addEventListener("click", (e) => {
             let currentValue = parseInt(counterValue.textContent);
             e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
-            console.log(currentValue)
-            counterValue += 1;
+            counterValue.textContent = currentValue + 1;
             totalPriceElement.textContent = `${(unitPrice * (currentValue + 1)).toFixed(2)}`;
             updateBillSection();
             sessionStorageValues.forEach(element => {
