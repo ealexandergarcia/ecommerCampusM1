@@ -95,6 +95,8 @@ const updateBillSection = async () => {
         let unitPrice = parseFloat(unitPriceElements[index].getAttribute('data-price'));
 
         totalItems += count;
+        console.log(totalItems)
+        sessionStorage.setItem("totalItems",totalItems);
         totalPrice += count * unitPrice;
     });
 

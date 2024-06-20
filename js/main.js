@@ -2,11 +2,13 @@ import { menuListCategoryIndex } from "./components/menu.js";
 import { galleryIndex } from "./components/gallery.js";
 import { getAllProductsName, getAllCategory, getAllProductRandom } from "./module/app.js";
 import { getProductId } from "./module/detail.js";
+import { footerIndex } from "./components/footer.js";
 
 
 let input__search = document.querySelector("#input_search");
 let main__article = document.querySelector(".main__article")
 let nav__ul = document.querySelector(".nav__ul")
+let footer__ul = document.querySelector(".footer__ul")
 let searchProducts = async e => {
 
     let params = new URLSearchParams(location.search);
@@ -48,6 +50,8 @@ addEventListener("DOMContentLoaded", async (e) =>{
     input__search.value = "zapato"
     const eventoChange = new Event('change');
     input__search.dispatchEvent(eventoChange);
+    footer__ul.innerHTML = await footerIndex(sessionStorage);
+    console.log(footerIndex(sessionStorage));
 })
 
 input__search.addEventListener("change", searchProducts);
