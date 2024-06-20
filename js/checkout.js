@@ -27,24 +27,26 @@ addEventListener("DOMContentLoaded", async (e) => {
 
         incrementButton.addEventListener("click", (e) => {
             let currentValue = parseInt(counterValue.textContent);
-            e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+            e.preventDefault();
             counterValue.textContent = currentValue + 1;
             totalPriceElement.textContent = `${(unitPrice * (currentValue + 1)).toFixed(2)}`;
             updateBillSection();
-            sessionStorageValues.forEach(element => {
-                if (element !== null && typeof element === 'string') {
-                    const data = JSON.parse(element);
-                    let info = data.data;
-                    if (data.status === 'OK' && data.request_id && info){
-                        console.log(info);
-                        info.quantity = currentValue;
-                        sessionStorage.setItem(info.asin,JSON.stringify(info));
-                    }
+          
+            Object.keys(sessionStorage).forEach((key) => {
+              const storedValue = sessionStorage.getItem(key);
+              if (storedValue) {
+                try {
+                  const data = JSON.parse(storedValue);
+                  if (data.status === 'OK' && data.request_id && data.data) {
+                    data.data.quantity = currentValue;
+                    sessionStorage.setItem(key, JSON.stringify(data));
+                  }
+                } catch (error) {
+                  console.error(`Error parsing Session Storage value: ${error}`);
                 }
+              }
             });
-
-
-        });
+          });
     });
 
     decrementButtons.forEach((decrementButton, index) => {
