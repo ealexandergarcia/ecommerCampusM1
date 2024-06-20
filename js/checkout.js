@@ -38,7 +38,7 @@ addEventListener("DOMContentLoaded", async (e) => {
                 try {
                   const data = JSON.parse(storedValue);
                   if (data.status === 'OK' && data.request_id && data.data) {
-                    data.data.quantity = currentValue;
+                    data.data.quantity = currentValue+1;
                     sessionStorage.setItem(key, JSON.stringify(data));
                   }
                 } catch (error) {
@@ -62,6 +62,20 @@ addEventListener("DOMContentLoaded", async (e) => {
                 totalPriceElement.textContent = `$${(unitPrice * (currentValue - 1)).toFixed(2)}`;
                 updateBillSection();
                 
+                Object.keys(sessionStorage).forEach((key) => {
+                  const storedValue = sessionStorage.getItem(key);
+                  if (storedValue) {
+                    try {
+                      const data = JSON.parse(storedValue);
+                      if (data.status === 'OK' && data.request_id && data.data) {
+                        data.data.quantity = currentValue -1;
+                        sessionStorage.setItem(key, JSON.stringify(data));
+                      }
+                    } catch (error) {
+                      console.error(`Error parsing Session Storage value: ${error}`);
+                    }
+                  }
+                });
             }
         });
     });
