@@ -55,3 +55,21 @@ addEventListener("DOMContentLoaded", async (e) =>{
 })
 
 input__search.addEventListener("change", searchProducts);
+
+const observer = new MutationObserver(() => {
+  const nav__ul__product__li = document.querySelector('#nav__ul__product__li');
+  if (!nav__ul__product__li) {
+    // elemento existe, ocultar animación de carga y realizar otra acción
+    console.log('Elemento encontrado, ocultando animación de carga...');
+    observer.disconnect(); // desconectar el observador
+    // realizar otra acción, por ejemplo, ocultar el elemento de carga
+    let prueba = document.querySelector('#preloader_1');
+    prueba.classList.add("no__users__found");
+    
+  }
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
