@@ -36,7 +36,7 @@ export const galleryCategory = ({data: {product_photos}} = res)=>{
                 <a href="../?id='fashion'">
                     <img src="../storage/img/back.svg">
                 </a>
-                <img src="../storage/img/heartblack.svg">
+                <img id="btn_wishList" src="../storage/img/heartblack.svg">
             </div>
         </article>`;
 }
