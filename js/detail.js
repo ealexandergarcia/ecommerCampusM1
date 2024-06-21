@@ -27,12 +27,14 @@ addEventListener("DOMContentLoaded", async(e)=>{
 
     let btn_minus = document.querySelector("#btn_minus");
     let btn_plus = document.querySelector("#btn_plus");
+    let wishList = document.querySelector("#btn_wishList")
 
     product__information.innerHTML = await productDetail(info);
     footer__ul.innerHTML = await buttonCartDetails(info);
 
     btn_minus.addEventListener("click",quantity)
     btn_plus.addEventListener("click",quantity)
+    wishList.addEventListener("click",addToWishList)
     // footer__ul.innerHTML = await buttonAtcProductDetial(info)
     // let {data} = res;
     // let {
@@ -92,4 +94,19 @@ const quantity = async (e)=>{
     //     showConfirmButton: false,
     //     timer: 2000
     // });
+}
+
+const addToWishList= ()=>{
+    alert("Product saved to wish list")
+    let params = new URLSearchParams(location.search);
+    let id = params.get('id');
+    console.log(id)
+    if(!sessionStorage.getItem(prueba.Producto)){
+        prueba.Producto.data.favorite = true;
+        prueba.Producto.data.product_price = prueba.Producto.data.product_price.replace(/^\$/, '');
+        if(prueba.Producto.data.product_original_price){
+            prueba.Producto.data.product_original_price = prueba.Producto.data.product_original_price.replace(/^\$/, '');
+        }        
+        sessionStorage.setItem(id,JSON.stringify(prueba.Producto));
+    }
 }
