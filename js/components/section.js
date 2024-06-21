@@ -37,7 +37,8 @@ export const cardProductCheckout = async (res) => {
         if (element !== null && typeof element === 'string') {
             const data = JSON.parse(element);
             let info = data.data;
-            if (data.status === 'OK' && data.request_id && info) {
+            console.log(info);
+            if (data.status === 'OK' && data.request_id && info && !info.favorite) {
                 plantilla += /*html*/`
                 <article class="details__product">
                     <div class="product__imagen">
@@ -118,3 +119,30 @@ export const productDetail = async(res)=>{
         <p>${description2}</p>
     </details>`;
 }
+
+
+export const cardProductWishList = async (res) => {
+    let plantilla = "";
+    res.forEach((element) => {
+        if (element !== null && typeof element === 'string') {
+            const data = JSON.parse(element);
+            let info = data.data;
+            if (data.status === 'OK' && data.request_id && info && info.favorite) {
+                console.log(info);
+                plantilla += /*html*/`
+                <article class="details__product">
+                    <div class="product__imagen">
+                        <img src="${info.product_photo}">
+                    </div>
+                    <div class="product__description">
+                        <h3>${info.product_title}</h3>
+                        <small>Dress modern</small>
+                        <span class="unit-price" data-price="${info.product_price}">$${info.product_price}</span>
+                    </div>
+                </article>
+                `;
+            }
+        }
+    });
+    return plantilla;
+};
