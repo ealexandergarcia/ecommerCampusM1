@@ -54,7 +54,7 @@ export const galleryCarrousel = async (res) => {
                 <div class="slide">
                     <section>
                         <div class="section__front_page">
-                            <a href="views/detail.html">
+                            <a href="detail.html?id=${info.asin}">
                                 <img src="${info.product_photo}" alt="">
                             </a>
                         </div>

@@ -132,7 +132,9 @@ export const cardProductWishList = async (res) => {
                 plantilla += /*html*/`
                 <article class="details__product">
                     <div class="product__imagen">
+                        <a href="detail.html?id=${info.asin}">
                         <img src="${info.product_photo}">
+                        </a>
                     </div>
                     <div class="product__description">
                         <h3>${info.product_title}</h3>
