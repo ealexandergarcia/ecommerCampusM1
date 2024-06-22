@@ -40,3 +40,37 @@ export const galleryCategory = ({data: {product_photos}} = res)=>{
             </div>
         </article>`;
 }
+
+export const galleryCarrousel = async (res) => {
+    let plantilla = "";
+    res.forEach((element) => {
+        if (element !== null && typeof element === 'string') {
+            const data = JSON.parse(element);
+            let info = data.data;
+            // console.log(info);
+            if (data.status === 'OK' && data.request_id && info && info.asin) {
+                console.log(info);  
+                plantilla += /*html*/`
+                <div class="slide">
+                    <section>
+                        <div class="section__front_page">
+                            <a href="views/detail.html">
+                                <img src="${info.product_photo}" alt="">
+                            </a>
+                        </div>
+                        <h5>${info.product_title}</h5>
+                        <div class="section__price">
+                            <span>${info.product_price}</span>
+                            <div class="price__score">
+                                <img src="../storage/img/star.svg" alt="">
+                                <p>${info.product_star_rating?? 0}</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                `;
+            }
+        }
+    });
+    return plantilla;
+};

@@ -128,7 +128,7 @@ export const cardProductWishList = async (res) => {
             const data = JSON.parse(element);
             let info = data.data;
             if (data.status === 'OK' && data.request_id && info && info.favorite) {
-                console.log(info);
+                // console.log(info);
                 plantilla += /*html*/`
                 <article class="details__product">
                     <div class="product__imagen">
