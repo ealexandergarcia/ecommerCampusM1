@@ -141,6 +141,18 @@ export const cardProductWishList = async (res) => {
                         <small>Dress modern</small>
                         <span class="unit-price" data-price="${info.product_price}">$${info.product_price}</span>
                     </div>
+                    <div class="product__custom">
+                        <div class="product__select">
+                            <a href="" onclick="return false;" data-opc=${info.asin} alt="remove">
+                                <img src="../storage/img/trash.svg">
+                                <span>remove</span>
+                            </a>
+                            <a href="" onclick="return false;" data-opc=${info.asin} alt="add to cart">
+                                <img src="../storage/img/shopping-cart.svg">
+                                <span>add to cart</span>
+                            </a>
+                        </div>
+                </div>
                 </article>
                 `;
             }
