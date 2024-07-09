@@ -1,4 +1,4 @@
 export const headers = {
-    'x-rapidapi-key': '14a1f8eb64mshdcc29dfaaed8244p14ec59jsn9ffc06799e27',
+    'x-rapidapi-key': '4bcf916ed2msh86e30c38e054accp1d3881jsn9ab185876424',
     'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
 }
